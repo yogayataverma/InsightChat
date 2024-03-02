@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        #container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 10%;
+            margin-bottom: 10%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #FF7F50;
+            color: #fff;
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #F89880;
+            color: white;
+            font-weight: bolder;
+        }
+        .user-message {
+            background-color: #F88379;
+            color: #fff;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 80%;
+            float: left;
+        }
+        .bot-message {
+            background-color: #FFB6C1;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 80%;
+            float: right;
+        }
+        .highlighted-text {
+            color:#FFB6C1;
+        }
+    </style>
+    <script>
+        let firstMessageSent = false;
+
+        function submitForm() {
+            var userMessage = document.getElementById("user_message").value;
+
+            appendMessage("User", userMessage, "user-message");
+
+            if (!firstMessageSent) {
+                document.getElementById("message_label").style.display = "none";
+                firstMessageSent = true;
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/");
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var botResponse = xhr.responseText;
+                    // Remove "Chatbot is typing..." message
+                    document.getElementById("typing_indicator").style.display = "none";
+                    // Append the bot response after fetching
+                    appendMessage("Chatbot", botResponse, "bot-message");
+                }
+            };
+
+            // Show "Chatbot is Typing..."
+            setTimeout(function() {
+                document.getElementById("typing_indicator").style.display = "block";
+            }, 1500);
+
+
+            xhr.send("user_message=" + encodeURIComponent(userMessage));
+            document.getElementById("user_message").value = "";
+            return false;
+        }
+
+        function appendMessage(label, message, className) {
+            console.log(message)
+            var words = message.split(" ");
+            var index = 0;
+            var index1 = 0;
+            var messageDiv = document.createElement("div");
+            messageDiv.classList.add(className);
+
+            var labelElement = document.createElement("span");
+            labelElement.textContent = label + ": ";
+            var boldLabel = document.createElement("span");
+            boldLabel.style.fontWeight = "bold";
+            boldLabel.appendChild(labelElement);
+            messageDiv.appendChild(boldLabel);
+
+
+            var interval = setInterval(function () {
+                if (index < words.length) {
+
+                    console.log(typeof(words[index]))
+                    messageDiv.textContent += " " + words[index];
+                    index++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 50);
+
+            document.getElementById("response").appendChild(messageDiv);
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <h1>InsightChat</h1>
+        <div id="response"></div>
+        <!-- Typing indicator -->
+        <div id="typing_indicator" class="bot-message" style="display: none;">Chatbot is typing...</div>
+        <form onsubmit="return submitForm()">
+            <label for="user_message" id="message_label">Enter your message:</label><br>
+            <input type="text" id="user_message" name="user_message"><br>
+            <input type="submit" value="Send">
+        </form>
+    </div>
+</body>
+</html>
