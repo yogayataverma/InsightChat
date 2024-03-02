@@ -1,4 +1,4 @@
-# InsightChat - Flask Chatbot Application
+# InsightChat - Flask AI Chatbot Application
 
 InsightChat is a Flask-based chatbot application powered by Cohere API for natural language understanding and document retrieval. It allows users to interact with a chatbot to ask questions and receive relevant information retrieved from a collection of documents.
 
