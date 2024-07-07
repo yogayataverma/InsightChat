@@ -141,7 +141,7 @@ python-iso639==2024.2.7
 python-magic==0.4.27
 python-socketio==5.7.1
 pytz==2022.1
-pywin32==222
+pywin32==304
 pywinpty==2.0.6
 pyzmq==23.2.0
 rapidfuzz==3.6.1
