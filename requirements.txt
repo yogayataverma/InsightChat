@@ -122,7 +122,6 @@ prompt-toolkit==3.0.30
 protobuf==3.19.4
 psutil==5.9.1
 pure-eval==0.2.2
-python==3.7
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.21
