@@ -155,7 +155,6 @@ six==1.16.0
 sklearn==0.0
 sniffio==1.2.0
 sortedcontainers==2.4.0
-soupsieve==2.3.2.post1
 tensorflow==2.8.0
 tensorflow-estimator==2.9.0
 tensorflow-io-gcs-filesystem==0.26.0
