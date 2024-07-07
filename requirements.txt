@@ -150,7 +150,6 @@ requests-toolbelt==0.9.1
 rsa==4.9
 unstructured==0.12.5
 unstructured-client==0.18.0
-urllib3==2.2.1
 vboxapi==1.0
 voila==0.4.1
 wcwidth==0.2.5
