@@ -11,6 +11,7 @@ astunparse==1.6.3
 async-generator==1.10
 async-timeout==4.0.3
 attrs==21.4.0
+av==9.2.0
 Babel==2.10.3
 backcall==0.2.0
 backoff==2.2.1
@@ -141,6 +142,7 @@ python-iso639==2024.2.7
 python-magic==0.4.27
 python-socketio==5.7.1
 pytz==2022.1
+pywin32==304
 pywinpty==2.0.6
 pyzmq==23.2.0
 rapidfuzz==3.6.1
