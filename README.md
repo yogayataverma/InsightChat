@@ -10,7 +10,7 @@ InsightChat is a Flask-based chatbot application powered by Cohere API for natur
 
 ## Getting Started
 
-1. Clone the repository: git clone https://github.com/your-username/InsightChat.git
+1. Clone the repository: git clone https://github.com/yogayataverma/InsightChat.git
 
 2. Install dependencies: cd InsightChat , pip install -r requirements.txt
  
